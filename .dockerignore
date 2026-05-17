@@ -1,0 +1,13 @@
+bin/
+obj/
+**/bin/
+**/obj/
+*.db
+*.db-shm
+*.db-wal
+*.user
+*.suo
+.vs/
+.vscode/
+.idea/
+*.log

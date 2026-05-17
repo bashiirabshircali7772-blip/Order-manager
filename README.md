@@ -1,6 +1,6 @@
 # Order-manager
 
-ASP.NET Core 9 Razor Pages + Entity Framework Core + SQL Server LocalDB
+ASP.NET Core 9 Razor Pages + Entity Framework Core + SQLite
 
 ---
 
@@ -29,7 +29,7 @@ ASPCRUDAssignment/
 │       ├── Edit.cshtml / .cs      # Edit order
 │       └── Delete.cshtml / .cs    # Delete confirmation
 ├── Program.cs
-├── appsettings.json               # LocalDB connection string
+├── appsettings.json               # SQLite connection string
 └── ASPCRUDAssignment.csproj
 ```
 
@@ -39,24 +39,32 @@ ASPCRUDAssignment/
 
 ### 1. Install EF Core packages
 ```bash
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet add package Microsoft.EntityFrameworkCore.Design
 ```
 
-### 2. Create and apply the database migration
-```bash
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
-
-### 3. Run the app
+### 2. Run the app
 ```bash
 dotnet run
 ```
 Navigate to `https://localhost:{port}/Orders`
 
-### 4. Deploy to Azure with GitHub Actions
+### 4. Run locally with Docker
+```bash
+docker build -t order-manager .
+docker run --rm -p 8080:80 order-manager
+```
+Then open `http://localhost:8080/Orders`
+
+### 5. Deploy with Docker to Render or another container host
+This project now includes a `Dockerfile`, so you can deploy to Render, Railway, Fly.io, or any host that supports Docker containers.
+
+- Build the image locally or via GitHub Actions
+- Deploy the container image to your host
+- The app stores data in `orders.db` using SQLite for easy portability
+
+### 6. Deploy to Azure with GitHub Actions
 This project uses a GitHub Actions workflow for live deployment to Azure App Service.
 
 1. Push this repository to GitHub.
