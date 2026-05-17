@@ -1,0 +1,58 @@
+@page
+@model ASPCRUDAssignment.Pages.Orders.IndexModel
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1.75rem;">
+    <div>
+        <h1 class="page-title">📦 All Orders</h1>
+        <p class="page-sub">@Model.Orders.Count order(s) in the system</p>
+    </div>
+    <a asp-page="Create" class="btn-new">➕ Add Record</a>
+</div>
+
+<div class="glass-card">
+    @if (!Model.Orders.Any())
+    {
+        <div class="empty-state">
+            <p style="font-size:2.5rem; margin-bottom:.5rem;">📭</p>
+            <p>No orders yet. <a asp-page="Create">Add your first record!</a></p>
+        </div>
+    }
+    else
+    {
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Customer Name</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Order Date</th>
+                    <th style="text-align:center;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.Orders)
+                {
+                    <tr>
+                        <td><span class="badge-id">#@order.Id</span></td>
+                        <td style="font-weight:600;">@order.CustomerName</td>
+                        <td>@order.ProductName</td>
+                        <td>@order.Quantity</td>
+                        <td class="price-tag">@order.Price.ToString("C")</td>
+                        <td class="total-tag">@order.TotalValue.ToString("C")</td>
+                        <td class="date-tag">@order.OrderDate.ToString("yyyy-MM-dd")</td>
+                        <td style="text-align:center; white-space:nowrap;">
+                            <a asp-page="Edit"   asp-route-id="@order.Id" class="btn-edit">✏️ Edit Name</a>
+                            <a asp-page="Delete" asp-route-id="@order.Id" class="btn-del">🗑️ Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

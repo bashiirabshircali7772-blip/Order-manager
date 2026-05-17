@@ -1,0 +1,41 @@
+bin/
+obj/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/
+*.db
+*.bak
+*.mdf
+*.ldf
+*.log
+*.DS_Store
+*.dbmdl
+*.sql
+wwwroot/lib/
+*.nupkg
+packages/
+.nuget/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/*.vsix
+
+# Rider
+.idea/
+
+# Visual Studio Code
+.history/
+
+# Azure deployment files
+.publishsettings
+
+# JetBrains Rider
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt

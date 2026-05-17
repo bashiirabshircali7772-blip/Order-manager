@@ -1,0 +1,52 @@
+@page
+@model ASPCRUDAssignment.Pages.Orders.CreateModel
+@{
+    ViewData["Title"] = "New Order";
+}
+
+<h1 class="page-title">➕ Add Record</h1>
+<p class="page-sub">Fill in the details below, then click <strong style="color:#a78bfa;">Save Record</strong></p>
+
+<div class="glass-card" style="max-width:560px;">
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger" style="margin-bottom:1rem;"></div>
+
+        <div class="mb-field">
+            <label asp-for="Order.CustomerName" class="form-label"></label>
+            <input asp-for="Order.CustomerName" class="form-control" placeholder="e.g. Bashiir Abshir Ali" />
+            <span asp-validation-for="Order.CustomerName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-field">
+            <label asp-for="Order.ProductName" class="form-label"></label>
+            <input asp-for="Order.ProductName" class="form-control" placeholder="e.g. Laptop" />
+            <span asp-validation-for="Order.ProductName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-field">
+            <label asp-for="Order.Quantity" class="form-label"></label>
+            <input asp-for="Order.Quantity" class="form-control" type="number" min="1" value="1" />
+            <span asp-validation-for="Order.Quantity" class="text-danger"></span>
+        </div>
+
+        <div class="mb-field">
+            <label asp-for="Order.Price" class="form-label"></label>
+            <div class="input-prefix">
+                <span>$</span>
+                <input asp-for="Order.Price" class="form-control" type="number" step="0.01" min="0.01" placeholder="0.00" />
+            </div>
+            <span asp-validation-for="Order.Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-field">
+            <label asp-for="Order.OrderDate" class="form-label"></label>
+            <input asp-for="Order.OrderDate" class="form-control" type="date" />
+            <span asp-validation-for="Order.OrderDate" class="text-danger"></span>
+        </div>
+
+        <div style="display:flex; gap:.75rem; margin-top:1.75rem;">
+            <button type="submit" class="btn-submit">💾 Save Record</button>
+            <a asp-page="Index" class="btn-cancel">Cancel</a>
+        </div>
+    </form>
+</div>

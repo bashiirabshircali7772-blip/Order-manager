@@ -1,0 +1,32 @@
+@page "{id:int}"
+@model ASPCRUDAssignment.Pages.Orders.DeleteModel
+@{
+    ViewData["Title"] = "Delete Order";
+}
+
+<h1 class="page-title">🗑️ Delete Record</h1>
+<p class="page-sub">Review the record below, then confirm deletion</p>
+
+<div class="glass-card" style="max-width:520px;">
+    <div class="alert-warn" style="margin-bottom:1.5rem;">
+        ⚠️ <strong>This action cannot be undone.</strong> The order will be permanently removed.
+    </div>
+
+    <div class="detail-list" style="margin-bottom:1.75rem;">
+        <dt>Order #</dt>   <dd><span class="badge-id">#@Model.Order.Id</span></dd>
+        <dt>Customer</dt>  <dd style="font-weight:600;">@Model.Order.CustomerName</dd>
+        <dt>Product</dt>   <dd>@Model.Order.ProductName</dd>
+        <dt>Quantity</dt>  <dd>@Model.Order.Quantity</dd>
+        <dt>Price</dt>     <dd class="price-tag">@Model.Order.Price.ToString("C")</dd>
+        <dt>Total</dt>     <dd class="total-tag">@Model.Order.TotalValue.ToString("C")</dd>
+        <dt>Order Date</dt><dd class="date-tag">@Model.Order.OrderDate.ToString("yyyy-MM-dd")</dd>
+    </div>
+
+    <form method="post">
+        <input type="hidden" asp-for="OrderId" />
+        <div style="display:flex; gap:.75rem;">
+            <button type="submit" class="btn-danger-solid">Yes, Delete</button>
+            <a asp-page="Index" class="btn-cancel">Cancel</a>
+        </div>
+    </form>
+</div>
