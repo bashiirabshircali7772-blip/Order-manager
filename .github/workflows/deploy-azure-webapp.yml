@@ -29,6 +29,7 @@ jobs:
         run: dotnet publish ASPCRUDAssignment.csproj --configuration Release --no-restore --output publish
 
       - name: Deploy to Azure Web App
+        if: ${{ secrets.AZURE_PUBLISH_PROFILE != '' }}
         uses: azure/webapps-deploy@v4
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME }}

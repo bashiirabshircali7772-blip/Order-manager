@@ -57,15 +57,19 @@ docker run --rm -p 8080:80 order-manager
 ```
 Then open `http://localhost:8080/Orders`
 
-### 5. Deploy with Docker to Render or another container host
-This project now includes a `Dockerfile`, so you can deploy to Render, Railway, Fly.io, or any host that supports Docker containers.
+### 5. Docker image CI on GitHub
+A second workflow builds and publishes a Docker image to GitHub Container Registry when you push to `main`.
 
-- Build the image locally or via GitHub Actions
-- Deploy the container image to your host
-- The app stores data in `orders.db` using SQLite for easy portability
+- Image: `ghcr.io/<your-github-username>/order-manager:latest`
+- Use this image with Render, Railway, Fly.io, or any Docker-friendly host.
 
 ### 6. Deploy to Azure with GitHub Actions
-This project uses a GitHub Actions workflow for live deployment to Azure App Service.
+This project also includes an Azure deploy workflow, but the deploy step will only run if you add these GitHub secrets:
+
+- `AZURE_WEBAPP_NAME`
+- `AZURE_PUBLISH_PROFILE`
+
+The workflow will build successfully even without those secrets, but it will skip Azure deployment until they are set.
 
 1. Push this repository to GitHub.
 2. Create an Azure Web App for .NET 9.
