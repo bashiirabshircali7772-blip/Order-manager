@@ -8,7 +8,7 @@
 <p class="page-sub">Update the customer name and order details, then click <strong style="color:#a78bfa;">Update Record</strong></p>
 
 <div class="glass-card" style="max-width:560px;">
-    <form method="post" action="/Orders/Edit/@Model.Order.Id">
+    <form method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger" style="margin-bottom:1rem;"></div>
         <input type="hidden" asp-for="Order.Id" />
 
@@ -51,4 +51,3 @@
         </div>
     </form>
 </div>
-
