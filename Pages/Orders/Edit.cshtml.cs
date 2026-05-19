@@ -31,7 +31,8 @@ namespace ASPCRUDAssignment.Pages.Orders
         }
 
         // POST: save changes
-        public async Task<IActionResult> OnPostAsync()
+        // Waxaan halkan ku darnay 'int id' si uu u akhriyo id-ga url-ka ku jira
+        public async Task<IActionResult> OnPostAsync(int id)
         {
             // Remove TotalValue from validation (it's [NotMapped] computed)
             ModelState.Remove("Order.TotalValue");
@@ -39,11 +40,12 @@ namespace ASPCRUDAssignment.Pages.Orders
             if (!ModelState.IsValid)
                 return Page();
 
-            var orderInDb = await _context.Orders.FindAsync(Order.Id);
+            // Waxaan isticmaalaynaa 'id' si aan u soo helno xogta saxda ah
+            var orderInDb = await _context.Orders.FindAsync(id);
             if (orderInDb == null)
                 return NotFound();
 
-            // Manually copy updated values onto the tracked entity
+            // Waxaan koobiyeynaa xogtii cusubayd ee form-ka laga soo buuxiyey
             orderInDb.CustomerName = Order.CustomerName;
             orderInDb.ProductName  = Order.ProductName;
             orderInDb.Quantity     = Order.Quantity;
